@@ -6,9 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <form>
+        <input placeholder="Enter a city" class="search" type="text" max="30">
+        <button>Search</button>
+    </form>
+    <button class="tempBtn"><span class="celsius">C°</span>/<span class="bold farenheit">F°</span></button>
+    <h1></h1>
+    <span class="condition"></span>
+    <h2></h2>
+    <div>
+        <h3 class="high"></h3>
+        <h3 class="low"></h3>
+        <h3 class="feels"></h3>
+    </div>
+    <span class="error"></span>
 </body>
 </html>
