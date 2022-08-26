@@ -11,11 +11,14 @@ const low = document.querySelector('.low');
 const feels = document.querySelector('.feels');
 const cloudySpan = document.querySelector('.condition');
 let condition;
+const humidity = document.querySelector('.humidity');
+const wind = document.querySelector('.wind');
 const errorSpan = document.querySelector('.error');
 
 tempBtn.addEventListener('click', () => {
     celsius.classList.toggle('bold');
     farenheit.classList.toggle('bold');
+    getCoords()
 })
 
 searchBtn.addEventListener('click', (e) => {
@@ -47,6 +50,8 @@ searchBtn.addEventListener('click', (e) => {
         high.textContent = `H: ${Math.round(cityData.main.temp_max)}°`;
         low.textContent = `L: ${Math.round(cityData.main.temp_min)}°`;
         feels.textContent = `Feels Like: ${Math.round(cityData.main.feels_like)}°`;
+        humidity.textContent = `Humidity: ${cityData.main.humidity}%`;
+        wind.textContent = `Wind: ${cityData.wind.speed} MPH`
     }
     getCoords().catch((err) => {
         console.log(err);
