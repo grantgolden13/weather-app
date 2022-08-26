@@ -23,7 +23,7 @@ searchBtn.addEventListener('click', (e) => {
         const city = searchBar.value;
         h1.textContent = formatCityName(city);
 
-        const response = await fetch(('http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=d4b50f221b557e648860040cd6779c38&units=' + tempUnit), {mode: 'cors'});
+        const response = await fetch(('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=d4b50f221b557e648860040cd6779c38&units=' + tempUnit), {mode: 'cors'});
         const coordsData = await response.json();
         const lat = coordsData[0].lat;
         const lon = coordsData[0].lon;
