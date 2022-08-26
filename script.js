@@ -21,15 +21,16 @@ searchBtn.addEventListener('click', (e) => {
         errorSpan.textContent = "";
         checkUnit();
         const city = searchBar.value;
+        h1.textContent = formatCityName(city);
+
         const response = await fetch(('http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=d4b50f221b557e648860040cd6779c38&units=' + tempUnit), {mode: 'cors'});
         const coordsData = await response.json();
         const lat = coordsData[0].lat;
         const lon = coordsData[0].lon;
         const response1 = await fetch(('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=d4b50f221b557e648860040cd6779c38&units=' + tempUnit), {mode: 'cors'});
         const cityData = await response1.json();
+
         console.log(cityData);
-        h1.textContent = formatCityName(city);
-        cloudySpan.textContent = getClouds(cityData);
         appendData(cityData);
     }
     getCoords().catch((err) => {
@@ -43,7 +44,6 @@ tempBtn.addEventListener('click', () => {
     farenheit.classList.toggle('bold');
     getCoords();
 });
-
 
 function checkUnit() {
     const tempUnitElem = document.querySelector('.bold');
@@ -65,8 +65,8 @@ function formatCityName(cityName) {
         words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
     words.join("");
-    const wordsWithoutCommas = words.toString().replace(/,/g, ' ');
-    return wordsWithoutCommas;
+    const formattedCityName = words.toString().replace(/,/g, ' ');
+    return formattedCityName;
 }
 
 function getClouds(data) {
@@ -84,6 +84,7 @@ function getClouds(data) {
 }
 
 function appendData(data) {
+    cloudySpan.textContent = getClouds(data);
     h2.textContent = `${Math.round(data.main.temp)}°`;
     high.textContent = `H: ${Math.round(data.main.temp_max)}°`;
     low.textContent = `L: ${Math.round(data.main.temp_min)}°`;
